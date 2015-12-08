@@ -15,8 +15,10 @@
 
 
 #F_CPU = 12000000
-F_CPU = 20000000
+#F_CPU = 20000000
+F_CPU = 16000000
 #DEVICE = atmega16
+#DEVICE = atmega644
 DEVICE = atmega644p
 
 ifeq ($(DEVICE),atmega644)
@@ -33,9 +35,11 @@ else													#atmega16
 	DEFINES = -DTEST=$(TEST) -DDEVICE=$(DEVICE)#-DDEBUG_LEVEL=2
 endif
 
-PROGRAMMER = -c usbasp -P usb
+#PROGRAMMER = -c usbasp -P usb
 #PROGRAMMER = -c stk500 -P /dev/cu.U*
 #PROGRAMMER = -c stk500v2 -P avrdoper
+PROGRAMMER = -c ponyser -P /dev/ttyS0
+UISP = uisp -dprog=dasa2 -dserial=/dev/ttyS0
 
 ###############################################################################
 

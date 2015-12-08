@@ -292,8 +292,8 @@ int main(void)
 	odDebugInit();
     DBG1(0x00, 0, 0);
    
-	//do_boot_load = ~PIND & (1 << JUMPER_BIT);  // see if jumper is set (= 0)
-//	do_boot_load += ~ch & (1 << PORF);		// if we come here without a power on reset
+	do_boot_load = ~PIND & (1 << JUMPER_BIT);  // see if jumper is set (= 0)
+	do_boot_load += ~ch & (1 << PORF);		// if we come here without a power on reset
 												// we were forced into the bootloader, lets bootload even if there's no jumper!
 	do_boot_load += ch & (1 << EXTRF);		// also if we come here from external reset (to mimick Arduino bootloader)
 
